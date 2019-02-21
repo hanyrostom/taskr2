@@ -5,3 +5,23 @@ color : blue;
 html {
   background-color: yellow;
 }
+
+
+.categories {
+  display: flex;
+  border:2px solid black;
+  justify-content: space-around;
+}
+
+.category {
+  border: 2px solid red;
+  background-color: white;
+  width: 144px;
+  text-align: center;
+}
+
+.items {
+  border: 2px solid blue;
+  background-color: white;
+  height: 33px;
+}
