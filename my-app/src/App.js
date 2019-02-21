@@ -6,12 +6,55 @@ import Challenge from './components/Challenge.jsx';
 import OnSite from './components/OnSite.jsx';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+                  jobTitle: '',
+                  company: '',
+                  location: '',
+                  contact: ''
+                  };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    console.log('Event name : ', event.target.name)
+    this.setState({[event.target.name]: event.target.value},()=>{console.log(this.state)});
+  }
+
+  handleSubmit(event) {
+    alert('A job was added: ' + this.state);
+    event.preventDefault();
+  }
+
+
   render() {
     return (
       <div className="App">
         
         <div>
            <h1>taskr</h1>
+           <form onSubmit={this.handleSubmit}>
+             <label>
+              Job Title:
+               <input type="text" name="jobTitle" value={this.state.jobTitle} onChange={this.handleChange} />
+             </label>
+             <label>
+              Company:
+               <input type="text" name="company" value={this.state.company} onChange={this.handleChange} />
+             </label>
+             <label>
+              Location:
+               <input type="text" name="location" value={this.state.location} onChange={this.handleChange} />
+             </label>
+             <label>
+              Contact:
+               <input type="text" name="contact" value={this.state.contact} onChange={this.handleChange} />
+             </label>
+
+             <input type="submit" value="Submit" />
+           </form>
            
         </div>
         <div className="categories">
