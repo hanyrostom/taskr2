@@ -12,7 +12,8 @@ class App extends Component {
                   jobTitle: '',
                   company: '',
                   location: '',
-                  contact: ''
+                  contact: '',
+                  newJob : []
                   };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,6 +26,7 @@ class App extends Component {
 
   handleSubmit(event) {
     alert('A job was added: ' + this.state);
+    this.setState({newJob:[this.state.jobTitle, this.state.company, this.state.location, this.state.contact]},()=>{console.log(this.state)});
     event.preventDefault();
   }
 
@@ -58,7 +60,7 @@ class App extends Component {
            
         </div>
         <div className="categories">
-          <Initial />
+          <Initial job={this.state.newJob}/>
           <Technical />
           <Challenge />
           <OnSite />

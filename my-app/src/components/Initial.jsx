@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Initial = () => (
+const Initial = ({job}) => (
     <div className="category">   
         <h3>Applied + Email</h3>
-        <div className="items">
-        </div>
+        <div className="items">{job}</div>
     </div>
 )
 
