@@ -1,11 +1,22 @@
 import React from 'react';
+import JobEntry from './JobEntry'
 
-const Initial = ({job}) => (
+const Initial = ({initialJobs}) => {
+    console.log('initialJobs : ', initialJobs);
+    return(
     <div className="category">   
         <h3>Applied + Email</h3>
-        <div className="items">{job}</div>
+        <div className="items">
+        {initialJobs.map((job,key)=>
+            <JobEntry
+              key={key}
+              job={job}
+            />
+        )}
+        </div>
     </div>
 )
+}
 
 
 
