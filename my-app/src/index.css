@@ -1,3 +1,5 @@
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css";
+
 body {
 color : blue;
 }
@@ -6,6 +8,10 @@ html {
   background-color: yellow;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+}
 
 .categories {
   display: flex;

@@ -13,10 +13,18 @@ class App extends Component {
                   company: '',
                   location: '',
                   contact: '',
-                  initial:[]
+                  initial: [
+                    {jobTitle: "Front End Engineer", company: "Facebook", location: "Colorado", contact: "Mike", stage:"initial"},
+                    {jobTitle: "Full Stack Engineer", company: "NBC", location: "New Jersey", contact: "Pedro", stage:"initial"},
+                    {jobTitle: "Software Engineer", company: "Google", location: "New York", contact: "Costanza", stage: "initial"}
+                    ],
+                  technical: [],
+                  challenge: [],
+                  onSite: []
                   };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleStageChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
@@ -29,12 +37,18 @@ class App extends Component {
                   jobTitle: this.state.jobTitle,
                   company: this.state.company,
                   location: this.state.location,
-                  contact: this.state.contact
+                  contact: this.state.contact,
+                  stage: 'initial'
                  };
     
     this.setState({initial:[...this.state.initial, newJob]},()=>{console.log(this.state)});
     event.preventDefault();
   }
+
+  handleStageChange(event){
+
+  }
+  
 
 
   render() {
@@ -43,14 +57,14 @@ class App extends Component {
         
         <div>
            <h1>taskr</h1>
-           <form onSubmit={this.handleSubmit}>
-             <label>
-              Job Title:
-               <input type="text" name="jobTitle" value={this.state.jobTitle} onChange={this.handleChange} />
-             </label>
+           <form onSubmit={this.handleSubmit} className='form'>
              <label>
               Company:
                <input type="text" name="company" value={this.state.company} onChange={this.handleChange} />
+             </label>
+             <label>
+              Job Title:
+               <input type="text" name="jobTitle" value={this.state.jobTitle} onChange={this.handleChange} />
              </label>
              <label>
               Location:
