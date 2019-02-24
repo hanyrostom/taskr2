@@ -38,6 +38,7 @@ class JobEntry extends Component {
                         <Form.Group controlId="exampleForm.ControlSelect1">
                             <Form.Label>Stage</Form.Label>
                             <Form.Control as="select" value={this.state.value.new} name={this.props.job.company}  onChange={this.handleChange}>
+                                <option value=""></option>
                                 <option value='technical'>Technical</option>
                                 <option value='challenge'>Challenge</option>
                                 <option value='onSite'>OnSite</option>

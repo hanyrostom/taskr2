@@ -7,7 +7,7 @@ const Initial = ({initialJobs,handleStageChange, distribute}) => {
     <div className="category">   
         <h3>Applied + Email</h3>
         <div className="items">
-        {initialJobs.reverse().map((job,key)=>
+        {initialJobs.map((job,key)=>
             <JobEntry
               handleStageChange={handleStageChange}
               distribute={distribute}
