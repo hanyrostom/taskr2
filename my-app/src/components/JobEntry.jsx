@@ -6,7 +6,7 @@ class JobEntry extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'test'
+            value: {current: this.props.job.stage, new: 'test2'}
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,13 +14,14 @@ class JobEntry extends Component {
 
     handleChange(event){
         console.log('changed::', event.target.value)
-        this.setState({value:event.target.value})
+        this.setState({value:{current:this.props.job.stage, new : event.target.value}},()=>console.log('In State: ', this.state))
         this.props.handleStageChange(event)
     }
 
     handleSubmit(event){
         event.preventDefault();
         console.log('submitted: ', this.state.value)
+        return this.state.value;
     }
     
 
@@ -28,7 +29,6 @@ class JobEntry extends Component {
 
         return (
         <div>
-            <input></input>
             <Card  bg="success" text="white" >
                 <Card.Body>
                     <Card.Title>{this.props.job.company}</Card.Title>
@@ -43,7 +43,7 @@ class JobEntry extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="exampleForm.ControlSelect1">
                             <Form.Label>Example select</Form.Label>
-                            <Form.Control as="select" value={this.state.value} onChange={this.handleChange}>
+                            <Form.Control as="select" value={this.state.value.new} name={this.props.job.company}  onChange={this.handleChange}>
                                 <option value='technical'>Technical</option>
                                 <option value='challenge'>Challenge</option>
                                 <option value='onSite'>OnSite</option>

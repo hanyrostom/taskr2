@@ -1,5 +1,5 @@
 import React from 'react';
-import JobEntry from './JobEntry'
+import JobEntry from './JobEntry';
 
 const Initial = ({initialJobs,handleStageChange}) => {
     console.log('initialJobs : ', initialJobs);

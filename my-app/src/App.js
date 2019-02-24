@@ -13,6 +13,11 @@ class App extends Component {
                   company: '',
                   location: '',
                   contact: '',
+                  allJobs: {
+                    'Facebook' : ['initial',{jobTitle: "Front End Engineer", company: "Facebook", location: "Colorado", contact: "Mike", stage:"initial"}],
+                    'NBC': ['initial',{jobTitle: "Full Stack Engineer", company: "NBC", location: "New Jersey", contact: "Pedro", stage:"initial"}],
+                    'Google':['initial',{jobTitle: "Software Engineer", company: "Google", location: "New York", contact: "Costanza", stage: "initial"}]
+                    },
                   initial: [
                     {jobTitle: "Front End Engineer", company: "Facebook", location: "Colorado", contact: "Mike", stage:"initial"},
                     {jobTitle: "Full Stack Engineer", company: "NBC", location: "New Jersey", contact: "Pedro", stage:"initial"},
@@ -20,17 +25,50 @@ class App extends Component {
                     ],
                   technical: [],
                   challenge: [],
-                  onSite: []
+                  onSite: [],
+                  stages: ['company','jobTitle','contact','location']
                   };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleStageChange = this.handleChange.bind(this);
+    this.updateStage = this.updateStage.bind(this);
+    this.distribute = this.distribute.bind(this);
+  }
+
+  componentDidMount(){
+    this.distribute();
+  }
+
+  distribute(){
+    let initial = [],
+        challenge = [],
+        technical = [],
+        onSite = [];
+    let allJobs = this.state.allJobs;
+    for (let company in allJobs){
+      //
+    }
+
   }
 
   handleChange(event) {
-    console.log('Event name : ', event.target.value)
-    if(event.target.name) this.setState({[event.target.name]: event.target.value},()=>{console.log(this.state)});
-    //else
+    console.log('Event.target.value', event.target.value); // technical
+    console.log('Event.target.name', event.target.name);// facebook
+    console.log('current Log', event.target.value.current)
+    console.log('conditional', this.state.stages.includes(event.target.name))
+    if(this.state.stages.includes(event.target.name)) this.setState({[event.target.name]: event.target.value},()=>{console.log(this.state)});
+    else this.updateStage(event.target.name,event.target.value);
+  }
+
+  updateStage(company,newStage){
+    console.log('company to be updated: ', company);
+    console.log('stage to be moved to: ',newStage);
+    // let newCareer = allJobs[company]; //copy opportunity
+    // newCareer[0] = newStage; 
+    let newAllJobs = Object.assign({}, this.state.allJobs); //copy all opportunities
+    newAllJobs[company][0] = newStage;//edit status of opportunity in copy
+    console.log('newJobs : ', newAllJobs)
+    this.setState({allJobs: newAllJobs},()=>{console.log(this.state)})
   }
 
   handleSubmit(event) {
@@ -41,8 +79,11 @@ class App extends Component {
                   contact: this.state.contact,
                   stage: 'initial'
                  };
-    
-    this.setState({initial:[...this.state.initial, newJob]},()=>{console.log(this.state)});
+    let newCompany = newJob.company;
+    let newAllJobs = Object.assign({}, this.state.allJobs);
+    newAllJobs[newCompany] = ['initial',newJob]
+
+    this.setState({initial:[...this.state.initial, newJob], allJobs : newAllJobs},()=>{console.log(this.state)});
     event.preventDefault();
   }
 
