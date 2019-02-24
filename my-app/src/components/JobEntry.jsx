@@ -9,7 +9,6 @@ class JobEntry extends Component {
             value: {current: this.props.job.stage, new: 'test2'}
         }
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event){
@@ -18,12 +17,6 @@ class JobEntry extends Component {
         this.props.handleStageChange(event)
     }
 
-    handleSubmit(event){
-        event.preventDefault();
-        console.log('submitted: ', this.state.value)
-        return this.state.value;
-    }
-    
 
     render(){
 
@@ -32,17 +25,18 @@ class JobEntry extends Component {
             <Card  bg="success" text="white" >
                 <Card.Body>
                     <Card.Title>{this.props.job.company}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{this.props.job.jobTitle}</Card.Subtitle>
+                    <Card.Text>{this.props.job.jobTitle}</Card.Text>
+                    {/* <Card.Subtitle className="mb-2 text-muted">{this.props.job.jobTitle}</Card.Subtitle>
                     <Card.Text>Applied: {new Date().toString().slice(0,21)}{"\n"}
                                Technical:
                                Challenge:
                                OnSite:
                     
-                    </Card.Text>
-                    <Card.Link href="#">Job Post</Card.Link>
-                    <Form onSubmit={this.handleSubmit}>
+                    </Card.Text> */}
+                    {/* <Card.Link href="#">Job Post</Card.Link> */}
+                    <Form>
                         <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Label>Example select</Form.Label>
+                            <Form.Label>Stage</Form.Label>
                             <Form.Control as="select" value={this.state.value.new} name={this.props.job.company}  onChange={this.handleChange}>
                                 <option value='technical'>Technical</option>
                                 <option value='challenge'>Challenge</option>
@@ -50,14 +44,12 @@ class JobEntry extends Component {
                                 <option value='initial'>Initial</option>
                             </Form.Control>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
+                        
                     </Form>
 
                     <Button variant="warning">X</Button>
                 </Card.Body>
-            </Card>;
+            </Card>
         </div>
         )
     }

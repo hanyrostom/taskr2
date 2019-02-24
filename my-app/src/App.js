@@ -46,8 +46,22 @@ class App extends Component {
         onSite = [];
     let allJobs = this.state.allJobs;
     for (let company in allJobs){
-      //
+      let stage = allJobs[company][0];
+      let job = allJobs[company][1];
+
+      if(stage === 'initial'){
+        initial.push(job);
+      }else if(stage === 'technical'){
+        technical.push(job);
+      }else if(stage === 'challenge'){
+        challenge.push(job);
+      }else if(stage === 'onSite'){
+        onSite.push(job);
+      }
     }
+
+    console.log('challenge[]', challenge)
+    this.setState({initial,technical, challenge, onSite},()=>console.log('reDistributed ',this.state));
 
   }
 
@@ -67,8 +81,8 @@ class App extends Component {
     // newCareer[0] = newStage; 
     let newAllJobs = Object.assign({}, this.state.allJobs); //copy all opportunities
     newAllJobs[company][0] = newStage;//edit status of opportunity in copy
-    console.log('newJobs : ', newAllJobs)
-    this.setState({allJobs: newAllJobs},()=>{console.log(this.state)})
+    console.log('newJobs : ', newAllJobs);
+    this.setState({allJobs: newAllJobs},()=>this.distribute())
   }
 
   handleSubmit(event) {
@@ -122,7 +136,7 @@ class App extends Component {
            
         </div>
         <div className="categories">
-          <Initial initialJobs={this.state.initial} handleStageChange={this.handleStageChange}/>
+          <Initial initialJobs={this.state.initial} handleStageChange={this.handleStageChange} distribute={this.distribute}/>
           <Technical technicalJobs={this.state.technical} handleStageChange={this.handleStageChange}/>
           <Challenge challengeJobs={this.state.challenge}handleStageChange={this.handleStageChange}/>
           <OnSite onSiteJobs={this.state.onSite}handleStageChange={this.handleStageChange}/>
