@@ -28,8 +28,9 @@ class App extends Component {
   }
 
   handleChange(event) {
-    console.log('Event name : ', event.target.name)
-    this.setState({[event.target.name]: event.target.value},()=>{console.log(this.state)});
+    console.log('Event name : ', event.target.value)
+    if(event.target.name) this.setState({[event.target.name]: event.target.value},()=>{console.log(this.state)});
+    //else
   }
 
   handleSubmit(event) {
@@ -46,7 +47,7 @@ class App extends Component {
   }
 
   handleStageChange(event){
-
+    console.log('handling State Change ', event.target)
   }
   
 
@@ -80,10 +81,10 @@ class App extends Component {
            
         </div>
         <div className="categories">
-          <Initial initialJobs={this.state.initial}/>
-          <Technical />
-          <Challenge />
-          <OnSite />
+          <Initial initialJobs={this.state.initial} handleStageChange={this.handleStageChange}/>
+          <Technical technicalJobs={this.state.technical} handleStageChange={this.handleStageChange}/>
+          <Challenge challengeJobs={this.state.challenge}handleStageChange={this.handleStageChange}/>
+          <OnSite onSiteJobs={this.state.onSite}handleStageChange={this.handleStageChange}/>
         </div>
         
       </div>
