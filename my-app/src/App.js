@@ -18,11 +18,7 @@ class App extends Component {
                     'NBC': ['initial',{jobTitle: "Full Stack Engineer", company: "NBC", location: "New Jersey", contact: "Pedro", stage:"initial"}],
                     'Google':['initial',{jobTitle: "Software Engineer", company: "Google", location: "New York", contact: "Costanza", stage: "initial"}]
                     },
-                  initial: [
-                    {jobTitle: "Front End Engineer", company: "Facebook", location: "Colorado", contact: "Mike", stage:"initial"},
-                    {jobTitle: "Full Stack Engineer", company: "NBC", location: "New Jersey", contact: "Pedro", stage:"initial"},
-                    {jobTitle: "Software Engineer", company: "Google", location: "New York", contact: "Costanza", stage: "initial"}
-                    ],
+                  initial: [],
                   technical: [],
                   challenge: [],
                   onSite: [],
@@ -33,6 +29,7 @@ class App extends Component {
     this.handleStageChange = this.handleChange.bind(this);
     this.updateStage = this.updateStage.bind(this);
     this.distribute = this.distribute.bind(this);
+    this.removeJob = this.removeJob.bind(this);
   }
 
   componentDidMount(){
@@ -81,6 +78,7 @@ class App extends Component {
     // newCareer[0] = newStage; 
     let newAllJobs = Object.assign({}, this.state.allJobs); //copy all opportunities
     newAllJobs[company][0] = newStage;//edit status of opportunity in copy
+    newAllJobs[company][1].stage = newStage;
     console.log('newJobs : ', newAllJobs);
     this.setState({allJobs: newAllJobs},()=>this.distribute())
   }
@@ -103,6 +101,14 @@ class App extends Component {
 
   handleStageChange(event){
     console.log('handling State Change ', event.target)
+  }
+
+  removeJob(company){
+    console.log(`we're deleting this: `, company)
+    let newAllJobs = Object.assign({}, this.state.allJobs);
+    delete newAllJobs[company];
+     //Re distribute after deleting
+    this.setState({allJobs: newAllJobs},()=>console.log('Deleted : ', this.distribute()))
   }
   
 
@@ -136,7 +142,7 @@ class App extends Component {
            
         </div>
         <div className="categories">
-          <Initial initialJobs={this.state.initial} handleStageChange={this.handleStageChange} distribute={this.distribute}/>
+          <Initial initialJobs={this.state.initial} handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
           <Technical technicalJobs={this.state.technical} handleStageChange={this.handleStageChange}/>
           <Challenge challengeJobs={this.state.challenge}handleStageChange={this.handleStageChange}/>
           <OnSite onSiteJobs={this.state.onSite}handleStageChange={this.handleStageChange}/>

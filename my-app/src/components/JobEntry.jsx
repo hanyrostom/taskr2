@@ -6,15 +6,21 @@ class JobEntry extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: {current: this.props.job.stage, new: 'test2'}
+            value: ''
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange(event){
         console.log('changed::', event.target.value)
         this.setState({value:{current:this.props.job.stage, new : event.target.value}},()=>console.log('In State: ', this.state))
         this.props.handleStageChange(event)
+    }
+
+    handleClick(event){
+        console.log('clicked',event.target.value);
+        this.props.removeJob(event.target.value);
     }
 
 
@@ -37,7 +43,7 @@ class JobEntry extends Component {
                     <Form>
                         <Form.Group controlId="exampleForm.ControlSelect1">
                             <Form.Label>Stage</Form.Label>
-                            <Form.Control as="select" value={this.state.value.new} name={this.props.job.company}  onChange={this.handleChange}>
+                            <Form.Control as="select" value={this.state.value} name={this.props.job.company}  onChange={this.handleChange}>
                                 <option value=""></option>
                                 <option value='technical'>Technical</option>
                                 <option value='challenge'>Challenge</option>
@@ -48,7 +54,7 @@ class JobEntry extends Component {
                         
                     </Form>
 
-                    <Button variant="warning">X</Button>
+                    <Button variant="warning" value={this.props.job.company}onClick={this.handleClick}>X</Button>
                 </Card.Body>
             </Card>
         </div>
