@@ -4,6 +4,7 @@ import Initial from './components/Initial.jsx';
 import Technical from './components/Technical.jsx';
 import Challenge from './components/Challenge.jsx';
 import OnSite from './components/OnSite.jsx';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
@@ -30,10 +31,17 @@ class App extends Component {
     this.updateStage = this.updateStage.bind(this);
     this.distribute = this.distribute.bind(this);
     this.removeJob = this.removeJob.bind(this);
+    this.getCompanies = this.getCompanies.bind(this);
   }
 
   componentDidMount(){
     this.distribute();
+    // axios.get(`https://jsonplaceholder.typicode.com/users`)
+    //   .then(res => {
+    //     const persons = res.data;
+    //     this.setState({ persons });
+    //   })
+    //   .then(()=>console.log('DONE!'))
   }
 
   distribute(){
@@ -70,6 +78,7 @@ class App extends Component {
     if(this.state.stages.includes(event.target.name)) this.setState({[event.target.name]: event.target.value},()=>{console.log(this.state)});
     else this.updateStage(event.target.name,event.target.value);
   }
+
 
   updateStage(company,newStage){
     console.log('company to be updated: ', company);
@@ -111,6 +120,10 @@ class App extends Component {
     this.setState({allJobs: newAllJobs},()=>console.log('Deleted : ', this.distribute()))
   }
   
+  //make an api call to get data once when app loads but not every time DOM is updated
+  getCompanies(){
+
+  }
 
 
   render() {
