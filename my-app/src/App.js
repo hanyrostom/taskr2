@@ -28,7 +28,6 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleStageChange = this.handleChange.bind(this);
-    this.updateStage = this.updateStage.bind(this);
     this.distribute = this.distribute.bind(this);
     this.removeJob = this.removeJob.bind(this);
     this.getCompanies = this.getCompanies.bind(this);
@@ -80,7 +79,7 @@ class App extends Component {
   }
 
 
-  updateStage(company,newStage){
+  updateStage = (company,newStage) => {
     console.log('company to be updated: ', company);
     console.log('stage to be moved to: ',newStage);
     // let newCareer = allJobs[company]; //copy opportunity
@@ -156,9 +155,9 @@ class App extends Component {
         </div>
         <div className="categories">
           <Initial initialJobs={this.state.initial} handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
-          <Technical technicalJobs={this.state.technical} handleStageChange={this.handleStageChange}/>
-          <Challenge challengeJobs={this.state.challenge}handleStageChange={this.handleStageChange}/>
-          <OnSite onSiteJobs={this.state.onSite}handleStageChange={this.handleStageChange}/>
+          <Technical technicalJobs={this.state.technical} handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
+          <Challenge challengeJobs={this.state.challenge}handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
+          <OnSite onSiteJobs={this.state.onSite}handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
         </div>
         
       </div>
