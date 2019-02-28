@@ -35,12 +35,12 @@ class App extends Component {
 
   componentDidMount(){
     this.distribute();
-    // axios.get(`https://jsonplaceholder.typicode.com/users`)
-    //   .then(res => {
-    //     const persons = res.data;
-    //     this.setState({ persons });
-    //   })
-    //   .then(()=>console.log('DONE!'))
+    // axios.get('/express_backend')
+    //      .then(res => {
+    //        console.log(res.data)
+    //      })
+    //      .then(()=>console.log('DONE!'))
+    //      .catch((err)=>console.error(err));
   }
 
   distribute(){
