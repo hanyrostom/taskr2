@@ -35,12 +35,15 @@ class App extends Component {
 
   componentDidMount(){
     this.distribute();
-    // axios.get('/express_backend')
-    //      .then(res => {
-    //        console.log(res.data)
-    //      })
-    //      .then(()=>console.log('DONE!'))
-    //      .catch((err)=>console.error(err));
+    axios.post('/testing',{
+      firstName: 'Fred',
+      lastName: 'Flintstone'
+        })
+         .then(res => {
+           console.log(res.data)
+         })
+         .then(()=>console.log('Server working'))
+         .catch((err)=>console.error(err));
   }
 
   distribute(){
