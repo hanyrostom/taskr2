@@ -25,15 +25,10 @@ class App extends Component {
                   onSite: [],
                   stages: ['company','jobTitle','contact','location']
                   };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleStageChange = this.handleChange.bind(this);
-    this.distribute = this.distribute.bind(this);
-    this.removeJob = this.removeJob.bind(this);
-    this.getCompanies = this.getCompanies.bind(this);
+  
   }
 
-  componentDidMount(){
+  componentDidMount = () => {
     this.distribute();
     axios.post('/testing',{
       firstName: 'Fred',
@@ -46,7 +41,11 @@ class App extends Component {
          .catch((err)=>console.error(err));
   }
 
-  distribute(){
+  // componentWillUpdate = () => {
+  //   this.distribute();
+  // }
+
+  distribute = () => {
     let initial = [],
         challenge = [],
         technical = [],
@@ -72,7 +71,7 @@ class App extends Component {
 
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     console.log('Event.target.value', event.target.value); // technical
     console.log('Event.target.name', event.target.name);// facebook
     console.log('current Log', event.target.value.current)
@@ -85,8 +84,6 @@ class App extends Component {
   updateStage = (company,newStage) => {
     console.log('company to be updated: ', company);
     console.log('stage to be moved to: ',newStage);
-    // let newCareer = allJobs[company]; //copy opportunity
-    // newCareer[0] = newStage; 
     let newAllJobs = Object.assign({}, this.state.allJobs); //copy all opportunities
     newAllJobs[company][0] = newStage;//edit status of opportunity in copy
     newAllJobs[company][1].stage = newStage;
@@ -110,11 +107,12 @@ class App extends Component {
     event.preventDefault();
   }
 
-  handleStageChange(event){
+  handleStageChange = (event) => {
     console.log('handling State Change ', event.target)
+    this.distribute();
   }
 
-  removeJob(company){
+  removeJob = (company) => {
     console.log(`we're deleting this: `, company)
     let newAllJobs = Object.assign({}, this.state.allJobs);
     delete newAllJobs[company];
@@ -123,7 +121,7 @@ class App extends Component {
   }
   
   //make an api call to get data once when app loads but not every time DOM is updated
-  getCompanies(){
+  getCompanies = () => {
 
   }
 
