@@ -91,7 +91,9 @@ class App extends Component {
     this.setState({allJobs: newAllJobs},()=>this.distribute())
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
+    event.preventDefault();
+    
     let newJob = {
                   jobTitle: this.state.jobTitle,
                   company: this.state.company,
@@ -104,7 +106,7 @@ class App extends Component {
     newAllJobs[newCompany] = ['initial',newJob]
 
     this.setState({initial:[...this.state.initial, newJob], allJobs : newAllJobs},()=>{console.log(this.state)});
-    event.preventDefault();
+    
   }
 
   handleStageChange = (event) => {
