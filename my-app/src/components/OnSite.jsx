@@ -1,7 +1,7 @@
 import React from 'react';
 import JobEntry from './JobEntry';
 
-const OnSite = ({onSiteJobs,handleStageChange, removeJob}) => {
+const OnSite = ({onSiteJobs,updateStage, removeJob}) => {
     console.log('onSiteJobs : ', onSiteJobs);
     return(
     <div className="category">   
@@ -9,7 +9,7 @@ const OnSite = ({onSiteJobs,handleStageChange, removeJob}) => {
         <div className="items">
         {onSiteJobs.map((job,key)=>
             <JobEntry
-              handleStageChange={handleStageChange}
+              updateStage={updateStage}
               removeJob={removeJob}
               key={key}
               job={job}

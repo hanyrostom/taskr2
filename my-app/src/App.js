@@ -155,10 +155,10 @@ class App extends Component {
            
         </div>
         <div className="categories">
-          <Initial initialJobs={this.state.initial} handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
-          <Technical technicalJobs={this.state.technical} handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
-          <Challenge challengeJobs={this.state.challenge}handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
-          <OnSite onSiteJobs={this.state.onSite}handleStageChange={this.handleStageChange} removeJob={this.removeJob}/>
+          <Initial initialJobs={this.state.initial} updateStage={this.updateStage} removeJob={this.removeJob}/>
+          <Technical technicalJobs={this.state.technical} updateStage={this.updateStage} removeJob={this.removeJob}/>
+          <Challenge challengeJobs={this.state.challenge} updateStage={this.updateStage} removeJob={this.removeJob}/>
+          <OnSite onSiteJobs={this.state.onSite} updateStage={this.updateStage} removeJob={this.removeJob}/>
         </div>
         
       </div>

@@ -15,7 +15,7 @@ class JobEntry extends Component {
     handleChange(event){
         console.log('changed::', event.target.value)
         this.setState({value:{current:this.props.job.stage, new : event.target.value}},()=>console.log('In State: ', this.state))
-        this.props.handleStageChange(event)
+        this.props.updateStage(this.props.job.company,event.target.value)
     }
 
     handleClick(event){

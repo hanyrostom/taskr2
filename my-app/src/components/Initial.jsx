@@ -1,7 +1,7 @@
 import React from 'react';
 import JobEntry from './JobEntry';
 
-const Initial = ({initialJobs,handleStageChange, removeJob}) => {
+const Initial = ({initialJobs,updateStage, removeJob}) => {
     console.log('initialJobs : ', initialJobs);
     return(
     <div className="category">   
@@ -9,7 +9,7 @@ const Initial = ({initialJobs,handleStageChange, removeJob}) => {
         <div className="items">
         {initialJobs.map((job,key)=>
             <JobEntry
-              handleStageChange={handleStageChange}
+              updateStage={updateStage}
               removeJob={removeJob}
               key={key}
               job={job}
