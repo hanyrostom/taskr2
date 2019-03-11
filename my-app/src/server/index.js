@@ -12,13 +12,24 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 // create a GET route
 
 app.get('/testing', (req, res) => {
-    
+
     res.send({ express: 'hmmm' });
   });
 
-  app.post('/testing',(req,res) => {
-    
+app.post('/testing',(req,res) => {
+
     console.log('req.bodyy: ', req.body);
+
+    saveJob(req.body, (err,results) => {
+        if(err) console.error(err);
+        else res.send('posted mhmm');
+    })
+
     
-    res.send('posted mhmm')
-  })
+})
+
+
+  /*
+  
+
+*/

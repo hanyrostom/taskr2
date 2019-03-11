@@ -30,15 +30,7 @@ class App extends Component {
 
   componentDidMount = () => {
     this.distribute();
-    axios.post('/testing',{
-      firstName: 'Fred',
-      lastName: 'Flintstone'
-        })
-         .then(res => {
-           console.log(res.data)
-         })
-         .then(()=>console.log('Server working'))
-         .catch((err)=>console.error(err));
+    
   }
 
   // componentWillUpdate = () => {
@@ -105,8 +97,25 @@ class App extends Component {
     let newAllJobs = Object.assign({}, this.state.allJobs);
     newAllJobs[newCompany] = ['initial',newJob]
 
-    this.setState({initial:[...this.state.initial, newJob], allJobs : newAllJobs},()=>{console.log(this.state)});
-    
+    this.setState({initial:[...this.state.initial, newJob], allJobs : newAllJobs},this.saveJob(newJob, this.state.initial.length - 1));
+  }
+
+  saveJob = (job, id) => {
+
+    console.log('job', job)
+    axios.post('/testing',{
+      id,
+      jobTitle: job.jobTitle,
+      company: job.company,
+      location: job.location,
+      contact: job.contact,
+      stage: 'initial'
+     })
+      .then(res => {
+           console.log(res.data)
+         })
+         .then(()=>console.log('Server working'))
+         .catch((err)=>console.error(err));
   }
 
   handleStageChange = (event) => {
